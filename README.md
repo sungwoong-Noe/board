@@ -115,9 +115,11 @@ public class BoardController {
 </html>
 ```
 6. 작성된 게시글이 없어 게시글 2개를 삽입해보았다.
+
 ![image](https://user-images.githubusercontent.com/84885273/125760942-f06796c8-eaff-4936-b69f-ef1abf2edb69.png)
 
 ![image](https://user-images.githubusercontent.com/84885273/125760848-a365eb58-1ef9-4c2e-9f2e-028b3ecdbda9.png)
-다행히 잘 나와준다.
+
+* 다행히 잘 나와준다.
 
    
