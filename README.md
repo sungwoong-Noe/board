@@ -38,4 +38,17 @@
   ### spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
    
    
+## 3.컨트롤러 생성
+
+* HomeController를 생성하여 
+'''
+@Controller //컨트롤러 어노테이션
+public class HomeController {
+
+    @GetMapping("/index") //브라우저 매핑
+    public String index() {
+        return "index";
+    }
+}
+'''
    
