@@ -120,6 +120,5 @@ public class BoardController {
 
 ![image](https://user-images.githubusercontent.com/84885273/125760848-a365eb58-1ef9-4c2e-9f2e-028b3ecdbda9.png)
 
-* 다행히 잘 나와준다.
 
    
