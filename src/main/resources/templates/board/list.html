@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Board List</title>
+</head>
+<body>
+
+<div>
+    <h2>게시판</h2>
+    <div>총 게시글: <span th:text="${#lists.size(boards)}"></span></div>
+    <!-- boards: 게시글 리스트를 전달 받아 출력하는 thymeleaf 문법 -->
+
+</div>
+
+</body>
+</html>
