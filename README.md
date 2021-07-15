@@ -27,13 +27,15 @@
 
 ## 2.H2 데이터 베이스 연동
 
-  * resource/application.properties에 
-''' 
-server.port=8080
-spring.h2.console.enabled=true
-spring.datasource.driver-class-name=org.h2.Driver
-spring.datasource.url=jdbc:h2:mem:testdb
-spring.datasource.username=sa
-spring.datasource.password=
-spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
-'''
+  * resource/application.properties에 아래 코드로 포트 설정과 데이터베이스 연결
+  
+  ### server.port=8080  : 포트 번호 
+  ### spring.h2.console.enabled=true
+  ### spring.datasource.driver-class-name=org.h2.Driver
+  ### spring.datasource.url=jdbc:h2:mem:testdb
+  ### spring.datasource.username=sa  : 사용자 이름
+  ### spring.datasource.password=   : 패스워드
+  ### spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+   
+   
+   
