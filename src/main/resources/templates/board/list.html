@@ -6,11 +6,32 @@
 </head>
 <body>
 
-<div>
-    <h2>게시판</h2>
-    <div>총 게시글: <span th:text="${count}"></span></div>
-    <!-- boards: 게시글 리스트를 전달 받아 출력하는 thymeleaf 문법 -->
-</div>
+    <div>
+        <h2>게시판</h2>
+        <div>총 게시글: <span th:text="${count}"></span></div>
+        <!-- boards: 게시글 리스트를 전달 받아 출력하는 thymeleaf 문법 -->
+
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col1">번호</th>
+                    <th scope="col1">제목</th>
+                    <th scope="col1">내용</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="board : ${boards}"}>   <!-- th:each는 for, while과 같은 반복문처럼 사용함-->
+                    <td th:text="${board.id}"></td>
+                    <td th:text="${board.title}"></td>
+                    <td th:text="${board.content}"></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button type="button">글쓰기</button>
+    </div>
+
 
 </body>
 </html>
