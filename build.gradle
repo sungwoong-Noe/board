@@ -25,7 +25,8 @@ dependencies {
     testCompileOnly 'org.projectlombok:1.18.18'
     testAnnotationProcessor 'org.projectlombok:1.18.18'
 
-    runtimeOnly 'com.h2database:h2'
+    implementation group : 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.4.1'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     annotationProcessor("org.projectlombok:lombok")
     compileOnly("org.projectlombok:lombok")
