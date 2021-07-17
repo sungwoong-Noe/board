@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Board List</title>
+</head>
+<body>
+
+    <form action="#" th:action="@{/board/form}" th:object="${board}" method="post">
+        <div>
+            <label for="title">제목</label>
+            <input type="text" id="title" placeholder="제목" th:field="*{title}">
+        </div>
+        <div>
+            <label for="content">내용</label>
+            <textarea id="content" placeholder="내용" th:field="*{content}"></textarea>
+        </div>
+        <div>
+            <a type="button" th:href="@{/borad/list}">취소</a>
+            <button type="submit">확인</button>
+        </div>
+    </form>
+
+</body>
+</html>
