@@ -122,3 +122,90 @@ public class BoardController {
 
 
    
+## 5. 데이터베이스 변경: h2를 쓰려 했으나 그냥 예제에서 쓰는 마리아 DB로 변경하였다.
+
+1. mariadb 검색 후 다운로드 진행
+2. heidiSQL 파일 실행
+3. ![image](https://user-images.githubusercontent.com/84885273/126042260-cb16e5be-e536-45a8-9cc5-b99cb8257f94.png)
+4. ![image](https://user-images.githubusercontent.com/84885273/126042392-334dc9a3-75c4-427d-b5a4-22209428c22a.png)
+### 우클릭으로도 쉽게 테이블 생성이 가능하다.
+
+## 6. 데이터베이스 연동
+
+1. 의존성 설정: 데이터베이스 정보와 계정 정보를 입력하여 연동시킨다.
+```java
+spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
+spring.datasource.username=myadmin
+spring.datasource.password=qwaszx96
+spring.datasource.url=jdbc:mariadb://localhost:3306/mydb
+```
+
+2. build.gradle에 implementation 추가
+```java
+   implementation group : 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.4.1'
+```
+
+3. 연동 확인
+![image](https://user-images.githubusercontent.com/84885273/126043873-80fd1c99-41a4-49ec-b5f7-efd66f66e018.png)
+![image](https://user-images.githubusercontent.com/84885273/126043877-73f4daaa-66b6-445a-889b-7944b2234ef6.png)
+
+## 7.게시글 작성 기능 추가
+
+1. 컨트롤러 설정: @GetMapping
+```java
+@GetMapping("/form")
+    public String form(Model model){
+        model.addAttribute("board", new Board());
+        return "board/form";
+    }
+```
+
+2. form.html 파일 생성 후 제목,내용 입력 칸과  버튼 생성
+```html
+<div>
+    <label for="title">제목</label>
+    <input type="text" id="title" placeholder="제목">
+</div>
+<div>
+    <label for="content">내용</label>
+    <textarea id="content" placeholder="내용">
+</div>
+<div>
+    <a type="button" th:href="@{/borad/list}">취소</a> <!-- 취소버튼을 누르면 /board/list창으로 이동하도록 설정-->
+    <button type="submit">확인</button>
+</div>
+``` 
+
+3. 작성된 데이터를 보내주기: @PostMapping(포스트 요청)
+```java
+  @PostMapping("/form")
+    public String greetingSubmit(@ModelAttribute Board board){  //@ModelAttribute : board 클래스를 받아올 수 있음
+        boardRepository.save(board);  //받은 클래스를 저장
+        return "redirect:/board/list";  //작성이 완료되면 list 페이지로 이동
+    }
+```
+
+4. form 태그로 데이터 전송 받기
+```html
+<form action="#" th:action="@{/board/form}" th:object="${board}" method="post">  
+        <div>
+            <label for="title">제목</label>
+            <input type="text" id="title" placeholder="제목" th:field="*{title}">
+        </div>
+        <div>
+            <label for="content">내용</label>
+            <textarea id="content" placeholder="내용" th:field="*{content}"></textarea>
+        </div>
+        <div>
+            <a type="button" th:href="@{/borad/list}">취소</a>
+            <button type="submit">확인</button>
+        </div>
+    </form>
+```
+
+5. 실행 화면
+![image](https://user-images.githubusercontent.com/84885273/126044286-38595dce-e378-4a1e-b3e7-13183d01e53c.png)
+
+![image](https://user-images.githubusercontent.com/84885273/126044289-6c86b278-d190-46c3-a5ed-45fb94ced326.png)
+
+
