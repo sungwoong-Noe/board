@@ -7,6 +7,7 @@
 <body>
 
     <form action="#" th:action="@{/board/form}" th:object="${board}" method="post">
+        <input type="hidden" th:field="*{id}">
         <div>
             <label for="title">제목</label>
             <input type="text" id="title" placeholder="제목" th:field="*{title}">

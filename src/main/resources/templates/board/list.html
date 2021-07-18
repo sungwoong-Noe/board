@@ -11,20 +11,21 @@
         <div>총 게시글: <span th:text="${count}"></span></div>
         <!-- boards: 게시글 리스트를 전달 받아 출력하는 thymeleaf 문법 -->
 
-        <table>
+        <table border="1">
             <thead>
                 <tr>
                     <th scope="col1">번호</th>
                     <th scope="col1">제목</th>
                     <th scope="col1">내용</th>
+                    <th scope="col1">작성자</th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="board : ${boards}"}>   <!-- th:each는 for, while과 같은 반복문처럼 사용함-->
                     <td th:text="${board.id}"></td>
-                    <td th:text="${board.title}"></td>
+                    <td><a th:text="${board.title}" th:href="@{/board/form(id=${board.id})}">Otto</a></td>
                     <td th:text="${board.content}"></td>
-                    <td></td>
+                    <td>홍길동</td>
                 </tr>
             </tbody>
         </table>
