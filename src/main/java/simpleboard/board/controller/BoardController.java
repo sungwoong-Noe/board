@@ -3,10 +3,7 @@ package simpleboard.board.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import simpleboard.board.model.Board;
 import simpleboard.board.repository.BoardRepository;
 
@@ -31,8 +28,13 @@ public class BoardController {
     }
 
     @GetMapping("/form")
-    public String form(Model model){
-        model.addAttribute("board", new Board());
+    public String form(Model model, @RequestParam(required = false) Long id){
+        if(id == null){
+            model.addAttribute("board", new Board());
+        }else{
+            Board board = boardRepository.findById(id).orElse(null);
+            model.addAttribute("board", board);
+        }
         return "board/form";
     }
 
