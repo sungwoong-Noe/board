@@ -2,6 +2,7 @@ package simpleboard.board.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.thymeleaf.util.StringUtils;
 import simpleboard.board.model.Board;
 import simpleboard.board.repository.BoardRepository;
 
@@ -15,8 +16,12 @@ class BoardApiController {
     private BoardRepository repository;
 
     @GetMapping("/boards")
-    List<Board> all(){
-       return repository.findAll();     //전체적인 게시판 내용 불러옴
+    List<Board> all(@RequestParam(required = false) String title){   //제목으로 검색하는 API
+        if(StringUtils.isEmpty(title)){              //전달이 안됐을 시
+            return repository.findAll();             //전체적인 게시판 내용 불러옴
+        }else{                                       //전달이 됐다면 검색 > 검색하는 메소드를 BoardRepository에 추가
+            return repository.findByTitle(title);    //검색해서 title과 일치하는 게시글 리턴됨
+        }
     }
 
 
