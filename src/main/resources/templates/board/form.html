@@ -11,15 +11,15 @@
         <div>
             <label for="title">제목</label>
             <input type="text" id="title" placeholder="제목" th:field="*{title}"
-            th:class="${#fields.hasErrors('title')} ? 'is-invalid'">
+            th:class="${#fields.hasErrors('title')}">
             <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}">
                 제목에러
             </div>
         </div>
         <div>
-            <labelfor="content">내용</label>
+            <label for="content">내용</label>
             <textarea id="content" placeholder="내용" th:field="*{content}"
-                th:classappend="${#fields.hasErrors('content')} ? 'is-invalid'"></textarea>
+                th:classappend="${#fields.hasErrors('content')}"></textarea>
             <div th:if="${#fields.hasErrors('content')}" th:errors="*{content}">
                 내용에러
             </div>
