@@ -3,6 +3,7 @@ package simpleboard.board.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,8 +33,8 @@ public class BoardController {
 
 
     @GetMapping("/list")
-    public String list(Model model){ //데이터값을 전해주려면 Model을 추가하면됨
-        Page<Board> boards = boardRepository.findAll(PageRequest.of(0, 20));
+    public String list(Model model, Pageable pageable){ //데이터값을 전해주려면 Model을 추가하면됨
+        Page<Board> boards = boardRepository.findAll(pageable);
         model.addAttribute("boards",boards);
         return "board/list";
     }
