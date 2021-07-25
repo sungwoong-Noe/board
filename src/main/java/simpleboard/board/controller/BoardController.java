@@ -34,7 +34,11 @@ public class BoardController {
 
     @GetMapping("/list")
     public String list(Model model, Pageable pageable){ //데이터값을 전해주려면 Model을 추가하면됨
-        Page<Board> boards = boardRepository.findAll(pageable);
+        Page<Board> boards = boardRepository.findAll(pageable); //Pageable로 페이지 값과 사이즈를 요청할 수 있게됨
+        int startPage = Math.max(0, boards.getPageable().getPageNumber() - 4);  //Math.max 클래스를 활용해서 최대 페이지 개수
+        int endPage = Math.min(boards.getTotalPages(), boards.getPageable().getPageNumber() + 4);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage",endPage);
         model.addAttribute("boards",boards);
         return "board/list";
     }
