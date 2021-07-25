@@ -20,16 +20,13 @@ import java.util.List;
 @RequestMapping("/board")
 public class BoardController {
 
-    //Autowired에 의해 서버 기동될 때 인스턴스 들어옴
-    private final BoardRepository boardRepository;
+    @Autowired      //Autowired에 의해 서버 기동될 때 인스턴스 들어옴
+    private BoardRepository boardRepository;
     //BoardRepository를 이용해서 테이블의 데이터를 가져옴
 
-    private final BoardValidator boardValidator;
+    @Autowired
+    private BoardValidator boardValidator;
 
-    public BoardController(BoardRepository boardRepository, BoardValidator boardValidator) {
-        this.boardRepository = boardRepository;
-        this.boardValidator = boardValidator;
-    }
 
 
     @GetMapping("/list")
