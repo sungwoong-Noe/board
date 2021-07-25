@@ -3,6 +3,7 @@ package simpleboard.board.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -27,5 +28,5 @@ public class User {     //사용자 테이블
 
 
     //Many to Many 매핑 하기 위해 JPA 사용, 리스트나 Set 사용
-    private List<Role> roles;   //멤버 변수 생성, UserRepository를 이용해서 조회하면 권한정보가 roles에 자동으로 담기게 됨
+    private List<Role> roles = new ArrayList<>();   //멤버 변수 생성, UserRepository를 이용해서 조회하면 권한정보가 roles에 자동으로 담기게 됨
 }
