@@ -26,11 +26,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         @Override
         protected void configure(HttpSecurity http) throws Exception {
             http    //페이지 설정
-                    .authorizeRequests()
+                    .authorizeRequests()    //권한이 확인되었다면 index 페이지로 이동
                         .antMatchers("/").permitAll()
                         .anyRequest().authenticated()
                         .and()
-                    .formLogin()
+                    .formLogin()            //확인되지 않았다면 로그인 페이지로 이동
                         .loginPage("/account/login")
                         .permitAll()
                         .and()
