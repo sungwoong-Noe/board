@@ -12,4 +12,9 @@ public class AccountController {
     public String login(){
         return "account/login";
     }
+
+//    @GetMapping("/register")
+//    public String register(){
+//        return "account/login";
+//    }
 }
