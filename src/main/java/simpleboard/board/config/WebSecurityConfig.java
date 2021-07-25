@@ -25,7 +25,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         @Override
         protected void configure(HttpSecurity http) throws Exception {
-            http
+            http    //페이지 설정
                     .authorizeRequests()
                         .antMatchers("/", "/home").permitAll()
                         .anyRequest().authenticated()
@@ -44,11 +44,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             auth.jdbcAuthentication()
                     .dataSource(dataSource) //dataSource를 넘겨주면 스프링에서 알아서 처리해줌
                     .passwordEncoder(passwordEncoder()) //passwordEncoder를 통해 비밀번호 암호화를 알아서 해줌
-                    .usersByUsernameQuery("select email,password,enabled "  //Authentication 인증 처리
-                            + "from bael_users "
-                            + "where email = ?")
-                    .authoritiesByUsernameQuery("select email,authority "   //Authroization 권한 처리
-                            + "from authorities "
+                    .usersByUsernameQuery("select username,password,enabled "  //Authentication 인증 처리, 사용자 정보 가져오기
+                            + "from user "
+                            + "where username = ?")
+                    .authoritiesByUsernameQuery("select username, name "   //Authroization 권한 처리, 사용자 권한 가져오기
+                            + "from user_role ur inner join user u on ur.user_id = u.id "   //user_role과 user 테이블 조인
+                            +"inner join role r on ur.role_id = r.id "  //권한 매핑, user_role 테이블의 role_id가 role 테이블의 id와 동일해야함
                             + "where email = ?");
         }
 
